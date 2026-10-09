@@ -39,4 +39,16 @@ describe('usePageFrames', () => {
     expect(result.current).toHaveLength(1);
     expect(result.current[0]).toMatchObject({ id, node: 'list?sort=b', leaving: false });
   });
+
+  it('settles when the host builds a fresh page element on every render', () => {
+    // AppShell wraps its children anew each render; comparing elements by
+    // identity would set state on every render and never settle.
+    const { result, rerender } = renderHook(({ key }: { key: string }) => usePageFrames(<div>{key}</div>, key), {
+      initialProps: { key: 'home' },
+    });
+    rerender({ key: 'home' });
+    rerender({ key: 'home' });
+    expect(result.current).toHaveLength(1);
+    expect(result.current[0]!.id).toBe(0);
+  });
 });

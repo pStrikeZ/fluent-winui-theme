@@ -43,8 +43,6 @@ export const usePageFrames = (page: ReactNode, pageKey: string): PageFrame[] => 
     // is supposed to still be.
     setLeaving({ id: current.id, node: current.node });
     setCurrent({ id: current.id + 1, key: pageKey, node: page });
-  } else if (current.node !== page) {
-    setCurrent({ ...current, node: page });
   }
 
   // Dropped by the animation that fades it, not by a timer of the same length:
