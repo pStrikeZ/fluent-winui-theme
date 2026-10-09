@@ -8,6 +8,8 @@ import { createGenerator } from 'unocss';
 import unoConfig from '../uno.config';
 import { errorShellCss } from '../src/components/ui/error-shell.css';
 import { loadingCss } from '../src/components/ui/loading-screen.css';
+import { gradientBackgroundCss } from '../src/shell/gradient-background.css';
+import { navigationProgressCss } from '../src/shell/navigation-progress.css';
 
 import { baseDocumentCss } from '../src/document.css';
 import { winuiCss } from '../src/winui/index';
@@ -86,7 +88,7 @@ writeFileSync(join(dist, 'winui.css'), await minifyCss(splitDarkScheme(winuiCss)
 // global.css with the utilities expanded in place, then what components import.
 // https://github.com/Menci/Floway/blob/fee9533cc3ed5cba8028e53e53ca13d2e64d91af/apps/web/src/critical.css.ts#L28-L34
 const utilities = await unoCss();
-const criticalCss = [baseDocumentCss, loadingCss, errorShellCss].join('\n');
+const criticalCss = [baseDocumentCss, gradientBackgroundCss, loadingCss, errorShellCss, navigationProgressCss].join('\n');
 const globalCss = readFileSync(join(root, 'src/base.css'), 'utf8')
   .replace(/^@unocss;$/m, () => utilities)
   .replaceAll("url('./assets/fonts/", "url('./fonts/");

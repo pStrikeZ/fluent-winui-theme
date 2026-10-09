@@ -16,6 +16,7 @@ The source is extracted from [Menci/Floway](https://github.com/Menci/Floway).
 | `src/components/sidebar/nav-selection-indicator.tsx` | `src/components/` |
 | `src/components/ui/` (generic components; see below) | `src/components/ui/` |
 | `src/lib/use-media-query.ts` | `src/lib/` |
+| `src/components/gradient-background{.css.ts,.tsx}`, `navigation-progress{.css.ts,.tsx}` | `src/shell/` |
 | `uno.config.ts` | `uno.config.ts` |
 | `patches/overlayscrollbars@2.13.0.patch` (repository root) | `patches/` |
 | `src/assets/fonts/` | `src/fonts/` |
@@ -54,6 +55,18 @@ Keep these as small as possible so a sync stays mechanical.
 9. The build bundles Prism (with Floway's ESM shim) and OverlayScrollbars
    (with Floway's patch, via `pnpm-workspace.yaml`) into `dist/index.js`, and
    expands UnoCSS at `@unocss;` in `base.css` as Floway's PostCSS step does.
+
+## Rewritten from Floway
+
+These are not copies, so a sync compares them with their source by reading,
+not by diff:
+
+| Here | Rewritten from (`apps/web/`) |
+|---|---|
+| `src/shell/app-shell.tsx` | `src/routes/dashboard.tsx` (layout only) |
+| `src/shell/navigation-pane.tsx` | `src/components/sidebar/nav.tsx` (pane only; pages and sign-out become props) |
+| `src/shell/page-frames.tsx` | `src/components/page-frames.tsx` (keyed by `pageKey` instead of the router) |
+| `src/shell/navigation-progress.tsx` | `src/components/navigation-progress.tsx` (`active` prop instead of `useNavigation`) |
 
 ## Syncing
 

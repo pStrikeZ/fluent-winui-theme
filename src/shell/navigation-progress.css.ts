@@ -20,7 +20,7 @@ export const navigationProgressCss = `
      so rather than invent a number the strip takes the duration and easing
      every WinUI control shares for a fast change.
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/Common_themeresources_any.xaml#L602-L606 */
-  .floway-navigation-progress {
+  .fwt-navigation-progress {
     height: 3px;
     inset: 0 0 auto;
     opacity: 0;
@@ -35,15 +35,15 @@ export const navigationProgressCss = `
     z-index: 1000001;
   }
 
-  .floway-navigation-progress[data-active='true'] { opacity: 1; }
+  .fwt-navigation-progress[data-active='true'] { opacity: 1; }
 
   /* Both indicators are ProgressBarForeground, which is
      AccentFillColorDefaultBrush in either theme dictionary, and
      ProgressBarCornerRadius is 1.5.
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ProgressBar/ProgressBar_themeresources.xaml#L6
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ProgressBar/ProgressBar_themeresources.xaml#L31 */
-  .floway-navigation-progress::before,
-  .floway-navigation-progress::after {
+  .fwt-navigation-progress::before,
+  .fwt-navigation-progress::after {
     animation-play-state: paused;
     background-color: var(--winui-accent-fill-default);
     border-radius: 1.5px;
@@ -51,13 +51,13 @@ export const navigationProgressCss = `
     inset: 0 auto 0 0;
     position: absolute;
   }
-${progressIndeterminateCss('.floway-navigation-progress::before', '.floway-navigation-progress::after')}
+${progressIndeterminateCss('.fwt-navigation-progress::before', '.fwt-navigation-progress::after')}
   /* Paused rather than unanimated while idle, which is what makes the fade out
      a fade: an animation hung on the active state is removed when that state
      goes, snapping each indicator back off the left edge in one frame with
      nothing left for the opacity underneath to ease. */
-  .floway-navigation-progress[data-active='true']::before,
-  .floway-navigation-progress[data-active='true']::after {
+  .fwt-navigation-progress[data-active='true']::before,
+  .fwt-navigation-progress[data-active='true']::after {
     animation-play-state: running;
   }
 
@@ -78,12 +78,12 @@ ${progressIndeterminateCss('.floway-navigation-progress::before', '.floway-navig
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ProgressBar/ProgressBar_themeresources.xaml#L12-L18
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ProgressBar/ProgressBar.xaml#L155-L157 */
   @media (forced-colors: active) {
-    .floway-navigation-progress {
+    .fwt-navigation-progress {
       border: 1px solid CanvasText;
       box-sizing: content-box;
     }
-    .floway-navigation-progress::before,
-    .floway-navigation-progress::after {
+    .fwt-navigation-progress::before,
+    .fwt-navigation-progress::after {
       background-color: Highlight;
     }
   }

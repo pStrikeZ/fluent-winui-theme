@@ -17,7 +17,7 @@
 // https://drafts.csswg.org/css-color-adjust/#forced-colors-properties
 // https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/dxaml/xcp/dxaml/themes/generic.xaml#L2990
 export const gradientBackgroundCss = `
-  .floway-gradient-background {
+  .fwt-gradient-background {
     background-image:
       radial-gradient(circle at 50% 0%, #ffffff 0%, #f7fbff 36%, transparent 64%),
       linear-gradient(180deg, #f6f8fb 0%, #eef2f6 100%);
@@ -25,7 +25,7 @@ export const gradientBackgroundCss = `
     overflow: hidden;
   }
   @media (prefers-color-scheme: dark) {
-    .floway-gradient-background {
+    .fwt-gradient-background {
       background-image:
         radial-gradient(circle at 50% 0%, #2d2d2d 0%, #242424 38%, transparent 68%),
         linear-gradient(180deg, #202020 0%, #1c1c1c 100%);

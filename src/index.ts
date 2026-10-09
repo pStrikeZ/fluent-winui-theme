@@ -62,3 +62,10 @@ export * from './components/ui/use-copy-to-clipboard';
 export * from './components/ui/use-dialog-invocation';
 export * from './components/ui/use-discard-guard';
 export { WinuiStringsProvider, winuiStringsByLocale, type WinuiLocale, type WinuiStringKey, type WinuiStrings, type WinuiStringsProviderProps } from './i18n/translation';
+
+// The application shell around Floway's dashboard pages.
+export { AppShell, type AppShellLabels, type AppShellProps } from './shell/app-shell';
+export { GradientBackground } from './shell/gradient-background';
+export { NavigationPane, type NavigationPaneGroup, type NavigationPaneItem, type NavigationPaneProps } from './shell/navigation-pane';
+export { NavigationProgress } from './shell/navigation-progress';
+export { pageFrameClassName, usePageFrames, type PageFrame } from './shell/page-frames';
