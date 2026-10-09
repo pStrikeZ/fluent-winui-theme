@@ -1,7 +1,10 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { DeleteRegular } from '@fluentui/react-icons';
+
 import { ConfirmFlyout } from '../../../src/components/ui/confirm-flyout';
+import { TooltipIconButton } from '../../../src/components/ui/tooltip-icon-button';
 import { renderInApp } from '../../render';
 import { settle } from '../../settle';
 
@@ -15,6 +18,16 @@ const mount = (onConfirm: () => void | Promise<void>, extra: Partial<Parameters<
 };
 
 describe('ConfirmFlyout', () => {
+  it('opens from a TooltipIconButton trigger', async () => {
+    renderInApp(
+      <ConfirmFlyout confirmLabel="Yes, delete" message="Delete it?" onConfirm={() => {}}>
+        <TooltipIconButton icon={<DeleteRegular />} label="Remove" onClick={() => {}} />
+      </ConfirmFlyout>,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Remove' }));
+    expect(await screen.findByText('Delete it?')).toBeTruthy();
+  });
+
   it('opens from the trigger and confirms, closing afterwards', async () => {
     const onConfirm = vi.fn();
     mount(onConfirm);

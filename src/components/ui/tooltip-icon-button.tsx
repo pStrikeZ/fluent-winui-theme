@@ -1,4 +1,4 @@
-import type { MouseEvent, ReactElement } from 'react';
+import type { HTMLAttributes, MouseEvent, ReactElement, Ref } from 'react';
 
 import { useDangerActionClasses } from './danger';
 import { useRouteAddress } from './route-link';
@@ -6,7 +6,16 @@ import { fluentComponents } from '../../fluent';
 
 const { Button, Tooltip, mergeClasses } = fluentComponents;
 
-interface IconButtonProps {
+// A Popover, Menu or Dialog trigger clones its child to hand it a ref, the
+// expanded state and its own click handler. Whatever this component dropped
+// would leave the surface with nothing to anchor to or open on, so the props a
+// trigger may pass go through to the button -- the same reasoning as Chip's.
+// React 19 passes `ref` as an ordinary prop, so it rides along with the rest.
+type IconButtonTriggerProps = Omit<HTMLAttributes<HTMLElement>, 'children' | 'className' | 'color' | 'onClick'> & {
+  ref?: Ref<HTMLButtonElement & HTMLAnchorElement>;
+};
+
+interface IconButtonProps extends IconButtonTriggerProps {
   className?: string;
   danger?: boolean;
   disabled?: boolean;
@@ -43,12 +52,13 @@ function AddressedIconButton({ to, ...props }: IconButtonProps & { to: string })
   return <IconButton {...props} {...address} />;
 }
 
-function IconButton({ className, danger = false, disabled = false, disabledFocusable = false, href, icon, label, onClick }: IconButtonProps & {
+function IconButton({ className, danger = false, disabled = false, disabledFocusable = false, href, icon, label, onClick, ...trigger }: IconButtonProps & {
   href?: string;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
 }) {
   const dangerClasses = useDangerActionClasses();
   const shared = {
+    ...(trigger as Record<string, unknown>),
     appearance: 'subtle',
     'aria-label': label,
     className: mergeClasses(danger && dangerClasses.button, className),
