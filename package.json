@@ -31,7 +31,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "rm -rf dist && tsx scripts/build.ts && tsc -p tsconfig.build.json",
+    "build": "rm -rf dist && tsx scripts/build.ts && tsc -p tsconfig.build.json && tsx scripts/declarations.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "check:pack": "tsx scripts/check-pack.ts",
