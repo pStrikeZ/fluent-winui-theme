@@ -14,5 +14,5 @@ const fontOverrides = {
   fontSizeBase600: '22px',
 } as const;
 
-export const flowayLightTheme = { ...webLightTheme, ...fontOverrides };
-export const flowayDarkTheme = { ...webDarkTheme, ...fontOverrides };
+export const baseLightTheme = { ...webLightTheme, ...fontOverrides };
+export const baseDarkTheme = { ...webDarkTheme, ...fontOverrides };

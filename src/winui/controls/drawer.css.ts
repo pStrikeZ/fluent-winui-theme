@@ -80,7 +80,7 @@ export const drawerCss = `
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/SplitView/SplitView_themeresources.xaml#L723
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/SplitView/SplitView_themeresources.xaml#L684-L693
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/dxaml/xcp/components/controls/LightDismissOverlay/inc/LightDismissOverlayHelper.h#L12-L26 */
-.floway-drawer-light-dismiss.floway-drawer-light-dismiss {
+.fwt-drawer-light-dismiss.fwt-drawer-light-dismiss {
   background-color: transparent;
 }
 

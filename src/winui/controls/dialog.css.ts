@@ -15,14 +15,14 @@ export const dialogCss = `
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/ContentDialog_themeresources.xaml#L6-L15
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/ContentDialog_themeresources.xaml#L223 */
 .fui-DialogSurface.fui-DialogSurface {
-  --floway-dialog-max-height: min(756px, 100dvh);
+  --fwt-dialog-max-height: min(756px, 100dvh);
   padding: 0;
   background-color: var(--winui-solid-background-fill-base);
   border-color: var(--winui-surface-stroke-default);
   min-width: 320px;
-  max-width: var(--floway-dialog-max-width, 548px);
+  max-width: var(--fwt-dialog-max-width, 548px);
   min-height: 184px;
-  max-height: var(--floway-dialog-max-height);
+  max-height: var(--fwt-dialog-max-height);
   overflow: hidden;
 }
 
@@ -34,8 +34,8 @@ export const dialogCss = `
    maxWidth), and derived from neither. A window narrower than the measure takes
    it back to the window less 16px on each side, rather than letting the surface
    run to the window edge. */
-.floway-dialog-shell--editor {
-  --floway-dialog-max-width: min(720px, calc(100vw - 32px));
+.fwt-dialog-shell--editor {
+  --fwt-dialog-max-width: min(720px, calc(100vw - 32px));
 }
 
 /* Fluent moves overflow onto the whole surface here and widens three border
@@ -116,14 +116,14 @@ export const dialogCss = `
   background-color: var(--winui-layer-fill-alt);
   border-radius: var(--winui-overlay-corner-radius) var(--winui-overlay-corner-radius) 0 0;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  max-height: calc(var(--floway-dialog-max-height) - 2px);
+  max-height: calc(var(--fwt-dialog-max-height) - 2px);
   min-height: 0;
   overflow: hidden;
 }
 
 /* The form must transmit the surface envelope without becoming a fourth sizing
    or scroll owner. */
-.floway-dialog-shell__form {
+.fwt-dialog-shell__form {
   margin: 0;
   max-height: inherit;
   min-height: 0;
@@ -159,7 +159,7 @@ export const dialogCss = `
    DialogContent that is not DialogShell's gets neither. The length is the room
    a focus visual needs outside the control it belongs to, which ../tokens.ts
    derives. */
-.floway-dialog-shell__content.floway-dialog-shell__content {
+.fwt-dialog-shell__content.fwt-dialog-shell__content {
   margin-inline: calc(-1 * var(--winui-focus-visual-outset));
 }
 
@@ -171,7 +171,7 @@ export const dialogCss = `
    and overflow the scrollport instead of wrapping in it.
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/ContentDialog_themeresources.xaml#L246
    https://drafts.csswg.org/css-text-4/#overflow-wrap-property */
-.floway-dialog-shell__scrollport {
+.fwt-dialog-shell__scrollport {
   padding-inline: var(--winui-focus-visual-outset);
   overflow-wrap: anywhere;
 }

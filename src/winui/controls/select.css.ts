@@ -37,7 +37,7 @@ export const selectCss = `
 
    Every rule here selects the field through a doubled class, which no Griffel
    rule can outweigh, so a surface that has to restate the faceplate says so
-   through the --floway-select-* seam instead: the fill and its hover and
+   through the --fwt-select-* seam instead: the fill and its hover and
    pressed steps, the stroke every enabled state draws, the border width and
    radius, and the focus composite's shadow and outline offset.
 
@@ -54,9 +54,9 @@ export const selectCss = `
 .fui-Dropdown.fui-Dropdown,
 .fui-Combobox.fui-Combobox {
   --colorPaletteRedBorder2: var(--colorNeutralStroke1);
-  background-color: var(--floway-select-fill, var(--winui-control-fill-default));
-  border-radius: var(--floway-select-radius, var(--winui-control-corner-radius));
-  border-width: var(--floway-select-border-width, 1px);
+  background-color: var(--fwt-select-fill, var(--winui-control-fill-default));
+  border-radius: var(--fwt-select-radius, var(--winui-control-corner-radius));
+  border-width: var(--fwt-select-border-width, 1px);
 }
 
 /* The one stroke WinUI keeps through rest and focus. Two Fluent rules have to be
@@ -72,7 +72,7 @@ export const selectCss = `
 .fui-Dropdown.fui-Dropdown:focus-within,
 .fui-Combobox.fui-Combobox:not(:focus-within),
 .fui-Combobox.fui-Combobox:focus-within {
-  border-color: var(--floway-select-stroke, var(--winui-control-elevation-border-color));
+  border-color: var(--fwt-select-stroke, var(--winui-control-elevation-border-color));
 }
 
 /* The pressed and disabled placeholder steps must be stated because the rest
@@ -107,8 +107,8 @@ export const selectCss = `
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ComboBox/ComboBox_themeresources.xaml#L55 */
 .fui-Dropdown.fui-Dropdown:hover:not(:has(.fui-Dropdown__button:disabled)),
 .fui-Combobox.fui-Combobox:hover:not(:has(.fui-Combobox__input:disabled)) {
-  background-color: var(--floway-select-fill-hover, var(--winui-control-fill-secondary));
-  border-color: var(--floway-select-stroke, var(--winui-control-elevation-border-color));
+  background-color: var(--fwt-select-fill-hover, var(--winui-control-fill-secondary));
+  border-color: var(--fwt-select-stroke, var(--winui-control-elevation-border-color));
 }
 
 /* Keyboard focus. WinUI lights a detached highlight border inset by -4px plus
@@ -132,11 +132,11 @@ export const selectCss = `
 .fui-Dropdown.fui-Dropdown:has([data-fui-focus-visible]),
 .fui-Combobox.fui-Combobox:has([data-fui-focus-visible]) {
   box-shadow: var(
-    --floway-select-focus-shadow,
+    --fwt-select-focus-shadow,
     0 0 0 var(--winui-focus-visual-primary-thickness) var(--winui-control-fill-default)
   );
   outline: var(--winui-focus-visual-primary-thickness) solid var(--winui-focus-stroke-outer);
-  outline-offset: var(--floway-select-focus-offset, var(--winui-focus-visual-primary-thickness));
+  outline-offset: var(--fwt-select-focus-offset, var(--winui-focus-visual-primary-thickness));
 }
 
 /* https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ComboBox/ComboBox_themeresources.xaml#L324
@@ -180,8 +180,8 @@ export const selectCss = `
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/dxaml/xcp/dxaml/lib/ComboBox_Partial.cpp#L850-L870 */
 .fui-Dropdown.fui-Dropdown:active:not(:has(.fui-Dropdown__button:disabled)),
 .fui-Combobox.fui-Combobox:active:not(:has(.fui-Combobox__input:disabled)) {
-  background-color: var(--floway-select-fill-pressed, var(--winui-control-fill-tertiary));
-  border-color: var(--floway-select-stroke, var(--winui-control-stroke-default));
+  background-color: var(--fwt-select-fill-pressed, var(--winui-control-fill-tertiary));
+  border-color: var(--fwt-select-stroke, var(--winui-control-stroke-default));
 }
 
 /* A disabled field can still take :active on the root -- the pointer event lands
@@ -301,7 +301,7 @@ export const selectCss = `
    https://github.com/microsoft/fluentui/blob/4aa1084999a8c1ac7245724ad6c76210fe80acf6/packages/react-components/react-combobox/library/src/components/Combobox/useCombobox.tsx#L43-L74
    https://github.com/microsoft/fluentui/blob/4aa1084999a8c1ac7245724ad6c76210fe80acf6/packages/react-components/react-positioning/library/src/middleware/maxSize.ts#L43-L70
    https://github.com/KingSora/OverlayScrollbars/blob/79fc9549843635ac1627b34685b1209e621ac5d2/packages/overlayscrollbars/README.md#L124-L171 */
-.floway-combobox-listbox-viewport {
+.fwt-combobox-listbox-viewport {
   flex: 1 1 auto;
   max-height: inherit;
   min-height: 0;
@@ -318,7 +318,7 @@ export const selectCss = `
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ComboBox/ComboBox_themeresources.xaml#L339
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ComboBox/ComboBox_themeresources.xaml#L592
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ComboBox/ComboBox_themeresources.xaml#L614 */
-.floway-combobox-listbox-content {
+.fwt-combobox-listbox-content {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -490,7 +490,7 @@ ${nested(checkboxSurfaceCss({
 }
 
 ${revealAnimation({
-  root: '.floway-combobox-listbox',
+  root: '.fwt-combobox-listbox',
   keyframes: 'winui-listbox-reveal',
   properties: [
     '--winui-listbox-reveal-leading: 0%;',
@@ -498,7 +498,7 @@ ${revealAnimation({
   ],
 })}
 
-.floway-combobox-listbox[data-popper-placement^='top'] {
+.fwt-combobox-listbox[data-popper-placement^='top'] {
   --winui-listbox-reveal-leading: 50%;
   --winui-listbox-reveal-trailing: 0%;
 }
@@ -509,7 +509,7 @@ ${revealAnimation({
    disabled the VSM generates it in SteadyState rather than Transition mode,
    which emits the end values and no motion.
    https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/dxaml/xcp/components/vsm/VisualStateManagerActuator.cpp#L383-L400 */
-${reducedMotion(['.floway-combobox-listbox'], 'animation-duration')}
+${reducedMotion(['.fwt-combobox-listbox'], 'animation-duration')}
 
 /* High Contrast. The pill takes the same Highlight the row is filled with, so
    it is the fill that carries selection there rather than the bar. The field's

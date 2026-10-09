@@ -2,7 +2,7 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { StrictMode, useCallback, useRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { NavSelectionIndicator } from '../../src/components/sidebar/nav-selection-indicator';
+import { NavSelectionIndicator } from '../../src/components/nav-selection-indicator';
 import { fluentComponents } from '../../src/fluent';
 import { stubMatchMedia } from '../match-media-stub';
 import { renderInApp } from '../render';

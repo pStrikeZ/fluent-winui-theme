@@ -1,10 +1,10 @@
 /* No rule below paints a colour of its own, so the document needs neither a
    dark-scheme nor a forced-colors block.
 
-   Order is load-bearing: the utilities come after the font so a utility can
-   override a face, and before the app's own rules so those can override a
-   utility. The WinUI layer arrives later still, as the stylesheet ../root.tsx
-   links by hand, and Griffel later than that at runtime. */
+   Order is load-bearing: a host that uses utilities places them after this
+   sheet so a utility can override a face, and before its own rules so those
+   can override a utility. winui.css arrives later still, and Griffel later
+   than that at runtime. */
 
 /* Segoe UI Variable is the typeface Fluent's type ramp is drawn for.
    https://learn.microsoft.com/en-us/typography/font-list/segoe-ui-variable
@@ -51,8 +51,8 @@
 @font-face {
   font-family: 'Segoe UI Variable Web';
   src:
-    url('https://docs.azure.cn/static/third-party/SegoeUIVariable/SegoeUI-VF.ttf?floway-vf=2.02') format('truetype'),
-    url('https://learn.microsoft.com/static/third-party/SegoeUIVariable/SegoeUI-VF.ttf?floway-vf=2.02') format('truetype');
+    url('https://docs.azure.cn/static/third-party/SegoeUIVariable/SegoeUI-VF.ttf?fwt-vf=2.02') format('truetype'),
+    url('https://learn.microsoft.com/static/third-party/SegoeUIVariable/SegoeUI-VF.ttf?fwt-vf=2.02') format('truetype');
   font-style: normal;
   font-weight: 300 700;
   font-display: swap;
@@ -129,13 +129,13 @@
    whatever is inside it, and it does not step down with the page inset: 16 is
    already the tightest measure WinUI states. */
 :root {
-  --floway-page-inset: 28px;
-  --floway-panel-inset: 16px;
+  --fwt-page-inset: 28px;
+  --fwt-panel-inset: 16px;
 }
 
 @media (max-width: 680px) {
   :root {
-    --floway-page-inset: 16px;
+    --fwt-page-inset: 16px;
   }
 }
 
@@ -151,14 +151,14 @@
    with the proportional leading its size sits closest to, so a mono cell lines
    up with the ordinary text in the same row. */
 :root {
-  --floway-font-size-mono: 13px;
-  --floway-line-height-mono: 20px;
-  --floway-font-size-mono-base100: 9px;
-  --floway-line-height-mono-base100: 14px;
-  --floway-font-size-mono-base500: 17px;
-  --floway-line-height-mono-base500: 24px;
-  --floway-font-size-mono-xs: 11px;
-  --floway-line-height-mono-xs: 16px;
+  --fwt-font-size-mono: 13px;
+  --fwt-line-height-mono: 20px;
+  --fwt-font-size-mono-base100: 9px;
+  --fwt-line-height-mono-base100: 14px;
+  --fwt-font-size-mono-base500: 17px;
+  --fwt-line-height-mono-base500: 24px;
+  --fwt-font-size-mono-xs: 11px;
+  --fwt-line-height-mono-xs: 16px;
 }
 
 button,
@@ -202,8 +202,8 @@ samp {
 
 pre,
 .font-mono {
-  font-size: var(--floway-font-size-mono) !important;
-  line-height: var(--floway-line-height-mono) !important;
+  font-size: var(--fwt-font-size-mono) !important;
+  line-height: var(--fwt-line-height-mono) !important;
 }
 
 .font-mono :where(button, input, select, textarea, code, kbd, pre, samp),
@@ -212,18 +212,18 @@ pre :where(code, kbd, samp) {
 }
 
 .mono-size-100 {
-  --floway-font-size-mono: var(--floway-font-size-mono-base100);
-  --floway-line-height-mono: var(--floway-line-height-mono-base100);
+  --fwt-font-size-mono: var(--fwt-font-size-mono-base100);
+  --fwt-line-height-mono: var(--fwt-line-height-mono-base100);
 }
 
 .mono-size-xs {
-  --floway-font-size-mono: var(--floway-font-size-mono-xs);
-  --floway-line-height-mono: var(--floway-line-height-mono-xs);
+  --fwt-font-size-mono: var(--fwt-font-size-mono-xs);
+  --fwt-line-height-mono: var(--fwt-line-height-mono-xs);
 }
 
 .mono-display {
-  font-size: var(--floway-font-size-mono-base500) !important;
-  line-height: var(--floway-line-height-mono-base500) !important;
+  font-size: var(--fwt-font-size-mono-base500) !important;
+  line-height: var(--fwt-line-height-mono-base500) !important;
 }
 
 .font-mono,

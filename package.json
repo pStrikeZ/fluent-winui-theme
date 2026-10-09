@@ -1,0 +1,59 @@
+{
+  "name": "@pstrikez/fluent-winui-theme",
+  "version": "0.1.0",
+  "description": "WinUI 3 appearance for Fluent UI React v9, extracted from Floway's dashboard.",
+  "license": "MIT",
+  "author": "pStrikeZ",
+  "contributors": ["Menci"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pStrikeZ/fluent-winui-theme.git"
+  },
+  "type": "module",
+  "sideEffects": ["*.css"],
+  "files": ["dist", "LICENSE", "NOTICE.md", "README.md"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./winui.css": "./dist/winui.css",
+    "./base.css": "./dist/base.css",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsx scripts/build.ts && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check:pack": "tsx scripts/check-pack.ts"
+  },
+  "peerDependencies": {
+    "@fluentui/react-components": "~9.74.4",
+    "@fluentui/react-icons": "^2.0.334",
+    "@fluentui/react-toast": "~9.8.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "dependencies": {
+    "culori": "^4.0.2"
+  },
+  "devDependencies": {
+    "@fluentui/react-components": "9.74.4",
+    "@fluentui/react-icons": "2.0.334",
+    "@fluentui/react-toast": "9.8.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/culori": "^4.0.1",
+    "@types/node": "^22.19.19",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "esbuild": "0.28.0",
+    "happy-dom": "20.11.1",
+    "postcss": "8.5.23",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tsx": "^4.22.4",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
+  },
+  "packageManager": "pnpm@10.24.0"
+}

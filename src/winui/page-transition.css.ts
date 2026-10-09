@@ -7,7 +7,7 @@
 // The leg that owns how long the outgoing frame stays mounted: it is dropped
 // when this animation ends, so ../components/page-frames.tsx recognises it by
 // name off the animation event.
-export const PAGE_LEAVE_ANIMATION = 'floway-page-leave';
+export const PAGE_LEAVE_ANIMATION = 'fwt-page-leave';
 
 export const pageTransitionCss = `
   /* The legs are strictly sequential, so the entering animation fills forwards:
@@ -15,18 +15,18 @@ export const pageTransitionCss = `
      style, overlapping the two pages for the length of the delay. Incoming
      opacity is two discrete key frames that never interpolate, as in the
      source. */
-  .floway-page-leaving {
+  .fwt-page-leaving {
     animation: ${PAGE_LEAVE_ANIMATION} var(--winui-page-leave-duration)
       var(--winui-page-leave-easing) forwards;
     pointer-events: none;
   }
-  .floway-page-entering {
-    animation: floway-page-enter var(--winui-page-enter-duration)
+  .fwt-page-entering {
+    animation: fwt-page-enter var(--winui-page-enter-duration)
       var(--winui-page-enter-easing) var(--winui-page-leave-duration) forwards;
     opacity: 0;
   }
   @keyframes ${PAGE_LEAVE_ANIMATION} { to { opacity: 0; } }
-  @keyframes floway-page-enter {
+  @keyframes fwt-page-enter {
     from { opacity: 1; translate: 0 var(--winui-page-enter-offset); }
     to { opacity: 1; translate: none; }
   }
@@ -39,7 +39,7 @@ export const pageTransitionCss = `
      adds this class, so nothing holds the frame down unless the thing that
      lifts it already exists, and the animation's forwards fill outranks this
      declaration afterwards. */
-  .floway-page-entrance {
+  .fwt-page-entrance {
     translate: 0 var(--winui-page-enter-offset);
   }
 
@@ -49,8 +49,8 @@ export const pageTransitionCss = `
      WCAG's definition, which turns on perceived position.
      https://github.com/w3c/wcag/blob/900ea026b967bc306a2cdbe0c586330a508d6759/guidelines/terms/21/motion-animation.html#L3-L4 */
   @media (prefers-reduced-motion: reduce) {
-    .floway-page-leaving { animation-duration: 0.01ms; }
-    .floway-page-entering {
+    .fwt-page-leaving { animation-duration: 0.01ms; }
+    .fwt-page-entering {
       animation-delay: 0.01ms;
       animation-duration: 0.01ms;
     }

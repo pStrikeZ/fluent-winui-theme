@@ -1,14 +1,15 @@
 import type { Theme } from '@fluentui/react-components';
 
 import { toLegacyCssColor } from '../lib/legacy-css-color';
-import { flowayDarkTheme, flowayLightTheme } from '../theme';
+import { baseDarkTheme, baseLightTheme } from '../theme';
 
 // Shared and status colors have no one-to-one WinUI counterpart and are spent
 // per control in ./controls/*.css.ts instead.
 //
-// One table serves both themes only because the app picks its Fluent theme from
-// `prefers-color-scheme` and nothing else (../root.tsx), the same query the
-// `--winui-*` dictionaries in ./tokens.ts switch on.
+// One table serves both themes only because the host picks its Fluent theme
+// from the same resolved scheme the `--winui-*` dictionaries in ./tokens.ts
+// switch on: `prefers-color-scheme`, overridable by `data-fwt-theme` on the
+// document element (../theme-mode.ts, scripts/color-scheme.ts).
 const palette = {
   // WinUI's SolidBackgroundFill ramp is ordered by role, not by lightness, so it
   // maps onto Fluent's ramp by role rather than by step number.
@@ -161,14 +162,14 @@ const legacyTheme = (theme: Theme): Theme => Object.fromEntries(
 ) as unknown as Theme;
 
 export const winuiLightTheme: Theme = legacyTheme({
-  ...flowayLightTheme,
+  ...baseLightTheme,
   ...palette,
   ...radii,
   ...shadows,
 });
 
 export const winuiDarkTheme: Theme = legacyTheme({
-  ...flowayDarkTheme,
+  ...baseDarkTheme,
   ...palette,
   ...radii,
   ...shadows,

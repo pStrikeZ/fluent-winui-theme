@@ -38,7 +38,7 @@
 
 import { reducedMotion } from './selectors';
 
-const host = `.floway-scroll-area[data-overlayscrollbars='host']`;
+const host = `.fwt-scroll-area[data-overlayscrollbars='host']`;
 
 export const scrollbarCss = `
 /* ScrollBarSize is the rail; ScrollBarVerticalThumbMinHeight reaches the pill

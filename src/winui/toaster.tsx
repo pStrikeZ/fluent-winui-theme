@@ -7,7 +7,7 @@
 // countdown are ours. The card and the title are wrapped here too, because the
 // context carrying a toast's intent is exported by this package alone.
 //
-// This is the app's only value import of `@fluentui/react-toast`. The runtime
+// This is the package's only value import of `@fluentui/react-toast`. The runtime
 // bindings still arrive as an argument, so ../fluent.ts stays the one place a
 // Fluent component surface is resolved and wrapped.
 import {

@@ -36,7 +36,7 @@
 //
 // Two kinds of subject cannot take the doubled form, and both are deliberate. A
 // rule about an element Fluent does not render — the OverlayScrollbars parts,
-// the `.floway-*` elements our own wrappers add — has no `fui-` class to double
+// the `.fwt-*` elements our own wrappers add — has no `fui-` class to double
 // and no Griffel atoms to beat. A rule about an unclassed descendant keeps the
 // doubled Fluent subject in front of it and reaches the child with a combinator.
 //
