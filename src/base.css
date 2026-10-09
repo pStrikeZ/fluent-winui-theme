@@ -1,0 +1,235 @@
+/* No rule below paints a colour of its own, so the document needs neither a
+   dark-scheme nor a forced-colors block.
+
+   Order is load-bearing: the utilities come after the font so a utility can
+   override a face, and before the app's own rules so those can override a
+   utility. The WinUI layer arrives later still, as the stylesheet ../root.tsx
+   links by hand, and Griffel later than that at runtime. */
+
+/* Segoe UI Variable is the typeface Fluent's type ramp is drawn for.
+   https://learn.microsoft.com/en-us/typography/font-list/segoe-ui-variable
+
+   Microsoft mirrors Learn's static tree byte-for-byte on Azure China, and we
+   ask the mirror first: learn.microsoft.com is fronted by Akamai, which maps
+   mainland clients onto European and US edges, while this host stays on
+   Microsoft's own AS8075 -- 1.0 s against 3.4 s from China Telecom in Nanjing.
+
+   Learn follows as a second source, because the mirror is a single host on a
+   single network and a mainland resolver that answers SERVFAIL for it would
+   otherwise cost the typeface. The two URLs are the same bytes -- both hosts
+   return x-ms-blob-content-md5 0z9O1Vho99UFoTkPuyg75g== and the downloads
+   compare equal -- so the second entry buys reachability and nothing else. It
+   also costs nothing on the common path, because a source list is walked
+   lazily: the user agent takes "the first one it can successfully parse and
+   activate", and activation is defined to include downloading the file.
+   https://drafts.csswg.org/css-fonts-4/#src-desc
+   Measured in Chromium 151, Firefox 153 and WebKit 26.5, the second URL is
+   fetched when and only when the first face errors, whether the host does not
+   resolve, refuses the connection, answers 404 or 500, returns a body that is
+   not a font, or omits the CORS header. It is never touched when the mirror
+   answers.
+
+   Two constraints hold this together, and both are easy to break from a
+   distance. `font-display` must stay at a value that waits for the face:
+   under `fallback` or `optional` the display timer expires before a slow
+   failure does, the face is abandoned, and the second URL is never requested
+   at all -- measured in Chromium against an unroutable primary, where `swap`
+   moves on at 5.2 s and neither of the other two ever moves. And the failure
+   has to be one the network reports: a mirror that accepts the connection and
+   then goes silent leaves the face pending rather than errored, so nothing
+   advances the list and the system stack stands in for as long as the request
+   does. SERVFAIL, refusal and reset are all reported, so the case this exists
+   for is covered.
+
+   TrueType is the only container upstream; there is no woff2 of the variable
+   face on either host, and it costs less than it looks -- the CDN gzips it to
+   1.05 MB against the 949 KB woff2 on microsoft.design, which answers a large
+   share of mainland requests with a Cloudflare challenge instead of the font.
+   Declaring no font-variation-settings is deliberate: the face carries an
+   `opsz` axis over 5-36, so the initial `font-optical-sizing: auto` drives it
+   from the used font size continuously rather than at two pinned stops. */
+@font-face {
+  font-family: 'Segoe UI Variable Web';
+  src:
+    url('https://docs.azure.cn/static/third-party/SegoeUIVariable/SegoeUI-VF.ttf?floway-vf=2.02') format('truetype'),
+    url('https://learn.microsoft.com/static/third-party/SegoeUIVariable/SegoeUI-VF.ttf?floway-vf=2.02') format('truetype');
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+/* Meslo LG S is the small-line-gap, slashed-zero member of Meslo LG. The four
+   faces come from the non-DZ v1.2.1 archive and retain its true italics:
+   https://github.com/andreberg/Meslo-Font/blob/09a431d546d211130352c28eb0466e5d7d5aeaf0/dist/v1.2.1/Meslo%20LG%20v1.2.1.zip
+
+   The generated WOFF2 files move each fixed-width glyph by half the added
+   advance and widen every face from 1233 to 1264 units. At 99.9895%, that puts
+   Meslo's `o` at the established apparent height while giving each column
+   Consolas's advance-to-`o`-height ratio. One family-wide scale and one
+   advance keep regular, bold, upright, and italic text on the same grid. The
+   metric overrides retain the established 1.32 em line box, so changing the
+   face does not move the surrounding layout. */
+@font-face {
+  font-family: 'Meslo LG S Web';
+  src: url('./assets/fonts/meslo-lg-s-400-normal.generated.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  size-adjust: 99.9895%;
+  ascent-override: 102.0107%;
+  descent-override: 30.0032%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Meslo LG S Web';
+  src: url('./assets/fonts/meslo-lg-s-400-italic.generated.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  size-adjust: 99.9895%;
+  ascent-override: 102.0107%;
+  descent-override: 30.0032%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Meslo LG S Web';
+  src: url('./assets/fonts/meslo-lg-s-700-normal.generated.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  size-adjust: 99.9895%;
+  ascent-override: 102.0107%;
+  descent-override: 30.0032%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Meslo LG S Web';
+  src: url('./assets/fonts/meslo-lg-s-700-italic.generated.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 600 700;
+  font-display: swap;
+  size-adjust: 99.9895%;
+  ascent-override: 102.0107%;
+  descent-override: 30.0032%;
+  line-gap-override: 0%;
+}
+
+@unocss;
+
+/* The 28 and its 16 at the narrow step transcribe nothing and are ours. The
+   panel inset is the 16 both of WinUI's nearest surfaces state: SettingsCard's
+   padding
+   (https://github.com/CommunityToolkit/Windows/blob/c076d3dd722e43204ffbeb16057090f8498c8166/components/SettingsControls/src/SettingsCard/SettingsCard.xaml#L99)
+   and Expander's ContentPadding
+   (https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/Expander/Expander_themeresources.xaml#L86).
+   Neither scales its inset to what it holds, so a panel takes the same measure
+   whatever is inside it, and it does not step down with the page inset: 16 is
+   already the tightest measure WinUI states. */
+:root {
+  --floway-page-inset: 28px;
+  --floway-panel-inset: 16px;
+}
+
+@media (max-width: 680px) {
+  :root {
+    --floway-page-inset: 16px;
+  }
+}
+
+/* The monospace ramp. WinUI states none, so nothing here transcribes: monospace
+   runs one pixel under whatever the same position would be set at were it not
+   monospace. A custom property cannot say "one less than whatever this element
+   inherits", so the subtraction is precomputed against each step of the type
+   ramp -- 14 becomes 13, 12 becomes 11, 10 becomes 9, 18 becomes 17.
+
+   Each size carries its leading, because a size alone inherits whatever leading
+   its context happens to have: one 13px identifier was measured 13/20 in a list
+   row, 13/16 in a detail pane and 13/13 in a table cell. Each step is paired
+   with the proportional leading its size sits closest to, so a mono cell lines
+   up with the ordinary text in the same row. */
+:root {
+  --floway-font-size-mono: 13px;
+  --floway-line-height-mono: 20px;
+  --floway-font-size-mono-base100: 9px;
+  --floway-line-height-mono-base100: 14px;
+  --floway-font-size-mono-base500: 17px;
+  --floway-line-height-mono-base500: 24px;
+  --floway-font-size-mono-xs: 11px;
+  --floway-line-height-mono-xs: 16px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--fontFamilyMonospace, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+}
+
+/* Inline code is never a boxed token: WinUI has no inline-code chip, and a
+   background plus a border plus its own foreground turns a word in a sentence
+   into a control. A `pre` states a surface only where it is a framed block --
+   ./components/ui/code-block.tsx -- not merely because it is preformatted.
+
+   `:where()` contributes no specificity, so the size is marked important for the
+   reason ./components/upstream-editor/mono-label.ts states -- inline code does
+   receive Griffel atoms, which a bare zero-specificity rule loses to. The other
+   two declarations need no flag: nothing states a colour or surface for these
+   elements to lose to.
+
+   The rules below hand `font-size: inherit` to code nested in a `pre` or a
+   `.font-mono` subtree, so a compound control does not step down per level. */
+:where(code, kbd, samp) {
+  font-size: calc(1em - 1px) !important;
+  background-color: transparent;
+  color: inherit;
+}
+
+/* WinUI's BodyStrong is the 600 weight; the 700 a browser gives `strong` by
+   default is heavier than anything the type ramp uses. */
+:where(strong, b) {
+  font-weight: var(--fontWeightSemibold);
+}
+
+pre,
+.font-mono {
+  font-size: var(--floway-font-size-mono) !important;
+  line-height: var(--floway-line-height-mono) !important;
+}
+
+.font-mono :where(button, input, select, textarea, code, kbd, pre, samp),
+pre :where(code, kbd, samp) {
+  font-size: inherit !important;
+}
+
+.mono-size-100 {
+  --floway-font-size-mono: var(--floway-font-size-mono-base100);
+  --floway-line-height-mono: var(--floway-line-height-mono-base100);
+}
+
+.mono-size-xs {
+  --floway-font-size-mono: var(--floway-font-size-mono-xs);
+  --floway-line-height-mono: var(--floway-line-height-mono-xs);
+}
+
+.mono-display {
+  font-size: var(--floway-font-size-mono-base500) !important;
+  line-height: var(--floway-line-height-mono-base500) !important;
+}
+
+.font-mono,
+.font-mono button,
+.font-mono input,
+.font-mono select,
+.font-mono textarea {
+  font-family: var(--fontFamilyMonospace) !important;
+}
