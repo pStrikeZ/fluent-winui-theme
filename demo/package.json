@@ -1,0 +1,27 @@
+{
+  "name": "fluent-winui-theme-demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview --host 127.0.0.1 --port 4318 --strictPort"
+  },
+  "dependencies": {
+    "@fluentui/react-components": "9.74.4",
+    "@fluentui/react-icons": "2.0.334",
+    "@fluentui/react-toast": "9.8.1",
+    "@pstrikez/fluent-winui-theme": "workspace:*",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.2",
+    "typescript": "5.9.3",
+    "vite": "8.1.5"
+  }
+}

@@ -127,6 +127,11 @@ pnpm test
 pnpm run build
 ```
 
+`demo/` is a gallery of every component inside the shell. Build the package
+first, then run `pnpm run demo:build` and `pnpm run demo:preview`. The query
+parameters `?mode=light|dark|system`, `?page=` and `?locale=en|zh-Hans` pick the
+initial state.
+
 [UPSTREAM.md](./UPSTREAM.md) records the Floway revision this package follows
 and how to sync from it.
 

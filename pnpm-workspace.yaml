@@ -1,3 +1,6 @@
+packages:
+  - demo
+
 # OverlayScrollbars is bundled into dist/index.js with Floway's patch applied,
 # so hosts install no copy of it and need no patch of their own.
 patchedDependencies:
