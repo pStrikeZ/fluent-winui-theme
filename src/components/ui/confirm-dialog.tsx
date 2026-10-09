@@ -59,7 +59,8 @@ export function ConfirmDialog({
   busy?: boolean;
   cancelLabel?: string;
   error?: string | null;
-  message: string;
+  /** Omitted when the title already asks the whole question, as WinUI's ContentDialog allows. */
+  message?: string;
   onCancel?: () => void;
   onConfirm: () => void;
   onDismissError?: () => void;
@@ -101,7 +102,7 @@ export function ConfirmDialog({
       title={<DialogTitle>{title}</DialogTitle>}
     >
       <div className="grid gap-3 min-w-0">
-        <span>{message}</span>
+        {message && <span>{message}</span>}
         {error && <OutcomeMessageBar onDismiss={onDismissError}>{error}</OutcomeMessageBar>}
       </div>
     </DialogShell>

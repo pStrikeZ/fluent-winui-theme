@@ -7,7 +7,7 @@ export interface ConfirmOptions {
   actionLabel: string;
   cancelLabel?: string;
   intent?: 'danger' | 'primary';
-  message: string;
+  message?: string;
   /**
    * Work the confirm button starts. The dialog stays open with its buttons held
    * until it settles: a resolve closes it and `confirm()` yields true, a
