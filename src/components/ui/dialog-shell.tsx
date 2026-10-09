@@ -12,6 +12,7 @@ const { Dialog, DialogBody, DialogContent, DialogSurface, mergeClasses } = fluen
 const surfaceWidthClasses = {
   standard: '',
   editor: 'fwt-dialog-shell--editor',
+  wide: 'fwt-dialog-shell--wide',
 };
 
 // Fluent can only animate a dialog out while the surface is still mounted, so

@@ -15,6 +15,7 @@ import { popoverCss } from './controls/popover.css';
 import { progressCss } from './controls/progress.css';
 import { scrollbarCss } from './controls/scrollbar.css';
 import { selectCss } from './controls/select.css';
+import { spinButtonCss } from './controls/spin-button.css';
 import { switchCss } from './controls/switch.css';
 import { tableCss } from './controls/table.css';
 import { tabsCss } from './controls/tabs.css';
@@ -50,6 +51,7 @@ export const winuiCss = [
   progressCss,
   scrollbarCss,
   selectCss,
+  spinButtonCss,
   switchCss,
   tableCss,
   tabsCss,

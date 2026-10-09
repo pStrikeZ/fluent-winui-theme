@@ -10,6 +10,11 @@ import {
 import { DashboardPageHeader, fluentComponents, Panel, SectionHeader } from '@pstrikez/fluent-winui-theme';
 import { useState } from 'react';
 
+import { TabViewDemo } from './tab-view-demo';
+
+import { DataTableDemo } from './data-table-demo';
+import { NumberFileDemo } from './number-file-demo';
+
 const {
   Accordion, AccordionHeader, AccordionItem, AccordionPanel, Button, CompoundButton, Divider, DataGrid, DataGridBody, DataGridCell,
   DataGridHeader, DataGridHeaderCell, DataGridRow, Field, Input, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, MessageBar,
@@ -133,6 +138,10 @@ export function ControlsPage() {
         </div>
       </Group>
 
+      <Group title="Tab view">
+        <TabViewDemo />
+      </Group>
+
       <Group title="Progress">
         <div style={rowStyle}>
           <Spinner size="tiny" /><Spinner size="small" label="Loading" /><Spinner size="large" />
@@ -156,6 +165,10 @@ export function ControlsPage() {
           </DataGridBody>
         </DataGrid>
       </Group>
+
+      <NumberFileDemo />
+
+      <DataTableDemo />
     </div>
   );
 }

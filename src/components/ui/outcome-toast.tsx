@@ -5,7 +5,10 @@ import { fluentComponents } from '../../fluent';
 
 const { Spinner, Toast, Toaster, ToastTitle, useToastController } = fluentComponents;
 
-// Success only: a failure carries the server's own words and belongs in a hand-dismissed surface next to what failed.
+// `OutcomeToasts` announces the outcome of work the app itself started, and is success only: a failure
+// carries the server's own words and belongs in a hand-dismissed surface next to what failed.
+// `useToast` is the plain notify-with-a-string counterpart for hosts that need every severity (the role
+// antd's `message.success/error/...` plays), drawn by the same toaster, so a toast looks the same either way.
 
 const TOAST_DISMISS_MS = 3000;
 
@@ -21,9 +24,27 @@ export interface OutcomeToasts {
   succeed: (message: string) => void;
 }
 
-const OutcomeToastContext = createContext<OutcomeToasts | null>(null);
+export type ToastSeverity = 'success' | 'error' | 'warning' | 'info';
 
+export interface ToastOptions {
+  /** Milliseconds before it dismisses itself; -1 keeps it until clicked. */
+  timeout?: number;
+}
+
+/** Each severity posts a toast and returns a function that dismisses it early. */
+export type ToastApi = Record<ToastSeverity, (text: string, options?: ToastOptions) => () => void>;
+
+const OutcomeToastContext = createContext<OutcomeToasts | null>(null);
+const ToastApiContext = createContext<ToastApi | null>(null);
+
+// AppShell mounts a provider of its own, so a host that also needs toasts above the shell (in the component that
+// renders AppShell) mounts one there as well. The inner one then defers to it: two toasters would stack two
+// columns of toasts in the same corner, and a toast raised outside the shell would never meet one raised inside.
 export function OutcomeToastProvider({ children }: PropsWithChildren) {
+  return useContext(OutcomeToastContext) ? children : <ToasterHost>{children}</ToasterHost>;
+}
+
+function ToasterHost({ children }: PropsWithChildren) {
   const toasterId = useId();
   const sequence = useRef(0);
   const { dispatchToast, dismissToast, updateToast } = useToastController(toasterId);
@@ -62,10 +83,25 @@ export function OutcomeToastProvider({ children }: PropsWithChildren) {
 
   const value = useMemo<OutcomeToasts>(() => ({ start, succeed }), [start, succeed]);
 
+  const notify = useCallback((intent: ToastSeverity, text: string, options?: ToastOptions) => {
+    const toastId = nextToastId();
+    dispatchToast(toastFor(toastId, text, false), { intent, toastId, timeout: options?.timeout ?? TOAST_DISMISS_MS });
+    return () => dismissToast(toastId);
+  }, [dismissToast, dispatchToast, nextToastId, toastFor]);
+
+  const api = useMemo<ToastApi>(() => ({
+    success: (text, options) => notify('success', text, options),
+    error: (text, options) => notify('error', text, options),
+    warning: (text, options) => notify('warning', text, options),
+    info: (text, options) => notify('info', text, options),
+  }), [notify]);
+
   return (
     <OutcomeToastContext.Provider value={value}>
-      <Toaster toasterId={toasterId} position="top-end" />
-      {children}
+      <ToastApiContext.Provider value={api}>
+        <Toaster toasterId={toasterId} position="top-end" />
+        {children}
+      </ToastApiContext.Provider>
     </OutcomeToastContext.Provider>
   );
 }
@@ -73,5 +109,11 @@ export function OutcomeToastProvider({ children }: PropsWithChildren) {
 export const useOutcomeToasts = (): OutcomeToasts => {
   const value = useContext(OutcomeToastContext);
   if (!value) throw new Error('useOutcomeToasts requires an OutcomeToastProvider above it');
+  return value;
+};
+
+export const useToast = (): ToastApi => {
+  const value = useContext(ToastApiContext);
+  if (!value) throw new Error('useToast requires an OutcomeToastProvider above it');
   return value;
 };

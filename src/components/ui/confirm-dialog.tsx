@@ -36,6 +36,9 @@ const useStyles = makeStyles({
   },
 });
 
+/** The critical-red fill of a destructive confirm button; ConfirmFlyout wears it too. */
+export const useDangerFillClass = (): string => useStyles().danger;
+
 export function ConfirmDialog({
   actionIntent = 'danger',
   actionLabel,

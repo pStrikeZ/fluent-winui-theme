@@ -29,6 +29,8 @@ import type { BadgeHue, BadgeTone } from '@pstrikez/fluent-winui-theme';
 import { useState } from 'react';
 
 import { SAMPLE_JSON } from '../data';
+import { ConfirmationsDemo } from './confirmations';
+import { MetricPropertyDemo } from './number-file-demo';
 import { pathOf } from '../router';
 
 const { Button, InfoLabel, Link, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Text } = fluentComponents;
@@ -183,6 +185,10 @@ export function ContentPage() {
           </div>
         </Panel>
       </section>
+
+      <MetricPropertyDemo />
+
+      <ConfirmationsDemo />
     </div>
   );
 }

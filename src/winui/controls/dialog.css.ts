@@ -38,6 +38,14 @@ export const dialogCss = `
   --fwt-dialog-max-width: min(720px, calc(100vw - 32px));
 }
 
+/* 960px is likewise our own measure, for a dialog whose content is a table or
+   a side-by-side comparison rather than a form -- a preview of rows to be
+   changed, or source and target text in two columns -- where the editor
+   measure would wrap every row. Same window inset as the editor measure. */
+.fwt-dialog-shell--wide {
+  --fwt-dialog-max-width: min(960px, calc(100vw - 32px));
+}
+
 /* Fluent moves overflow onto the whole surface here and widens three border
    edges to 4px to reserve the browser scrollbar. DialogShell keeps its
    three-band grid at every height, so only the border needs restating. */

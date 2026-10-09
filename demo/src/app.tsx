@@ -1,5 +1,6 @@
 import {
   AppShell,
+  ConfirmDialogProvider,
   fluentComponents,
   GradientBackground,
   NavigationPane,
@@ -157,7 +158,9 @@ export function App() {
         <LocaleContext.Provider value={locale}>
           <WinuiStringsProvider locale={locale}>
             <DemoRouter>
-              <Dashboard locale={locale} mode={mode} onLocale={setLocale} onMode={setMode} />
+              <ConfirmDialogProvider>
+                <Dashboard locale={locale} mode={mode} onLocale={setLocale} onMode={setMode} />
+              </ConfirmDialogProvider>
             </DemoRouter>
           </WinuiStringsProvider>
         </LocaleContext.Provider>

@@ -2,7 +2,7 @@
 // DOM, so no CSS selector can name a variant. These wrappers put the resolved
 // value back as `data-winui-*` for `winui/controls/*.css.ts` to address, and
 // swap the artwork Fluent picks where WinUI picks another.
-import { CheckmarkCircleFilled, ChevronDown12Regular, DismissCircleFilled, ErrorCircleFilled, InfoFilled } from '@fluentui/react-icons';
+import { CheckmarkCircleFilled, ChevronDown12Regular, ChevronUp12Regular, DismissCircleFilled, ErrorCircleFilled, InfoFilled } from '@fluentui/react-icons';
 import * as React from 'react';
 
 import { wrapFluent } from './wrap';
@@ -189,6 +189,23 @@ export const withWinuiAppearance = (components: FluentComponents): FluentCompone
     expandIcon: props.expandIcon === undefined ? { children: React.createElement(ChevronDown12Regular) } : props.expandIcon,
   }));
 
+  // The NumberBox draws its spin glyphs at 12px, where Fluent hands the same
+  // 16px artwork to both buttons for the thin-stroke reason given at
+  // `winuiChevron`. Fluent fills a button's children only when none are given,
+  // so a caller's own glyph survives.
+  // https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/NumberBox/NumberBox.xaml#L174-L175
+  // https://github.com/microsoft/fluentui/blob/4aa1084999a8c1ac7245724ad6c76210fe80acf6/packages/react-components/react-spinbutton/library/src/components/SpinButton/useSpinButton.ts#L316-L318
+  const withSpinGlyph = (slot: unknown, Glyph: React.ComponentType): unknown => {
+    if (slot === null) return slot;
+    const slotProps = resolveSlotProps(slot);
+    return slotProps?.children === undefined ? { ...slotProps, children: React.createElement(Glyph) } : slotProps;
+  };
+  const winuiSpinGlyphs = <Component>(component: Component): Component => wrapFluent(component, (props: PropCarrier) => ({
+    ...props,
+    incrementButton: withSpinGlyph(props.incrementButton, ChevronUp12Regular),
+    decrementButton: withSpinGlyph(props.decrementButton, ChevronDown12Regular),
+  }));
+
   // The map covers Fluent's whole appearance-carrying surface, not just the
   // subset the dashboard renders today, so a later component arrives stamped.
   return {
@@ -207,6 +224,7 @@ export const withWinuiAppearance = (components: FluentComponents): FluentCompone
     Input: stamp(components.Input, appearance('outline', rootAndPrimary)),
     Textarea: stamp(components.Textarea, appearance('outline', rootAndPrimary)),
     Select: stamp(components.Select, appearance('outline', rootAndPrimary)),
+    SpinButton: winuiSpinGlyphs(stamp(components.SpinButton, appearance('outline', rootAndPrimary))),
     Combobox: stamp(components.Combobox, appearance('outline', rootAndPrimary)),
     Dropdown: stamp(components.Dropdown, appearance('outline', rootAndPrimary)),
     Card: stamp(components.Card, appearance('filled', rootIsPrimary)),
