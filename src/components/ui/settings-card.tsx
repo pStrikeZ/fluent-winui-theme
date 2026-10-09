@@ -113,14 +113,12 @@ const useStyles = makeStyles({
       // and the dark one does not.
       // https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/Common_themeresources_any.xaml#L382-L390
       // https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/Common_themeresources_any.xaml#L186-L191
-      borderTopColor: 'var(--winui-control-stroke-default)',
+      // base.css picks the two stops per scheme, where `data-fwt-theme` can
+      // override the system scheme (local adaptation, UPSTREAM.md).
+      borderTopColor: 'var(--fwt-elevation-edge-top)',
       borderRightColor: 'var(--winui-control-stroke-default)',
-      borderBottomColor: 'var(--winui-control-stroke-secondary)',
+      borderBottomColor: 'var(--fwt-elevation-edge-bottom)',
       borderLeftColor: 'var(--winui-control-stroke-default)',
-      '@media (prefers-color-scheme: dark)': {
-        borderTopColor: 'var(--winui-control-stroke-secondary)',
-        borderBottomColor: 'var(--winui-control-stroke-default)',
-      },
     },
     // `:has` alongside each pointer state: the expander's own press lands on the
     // overlay inside the row, and a row that reacts only to a press on itself

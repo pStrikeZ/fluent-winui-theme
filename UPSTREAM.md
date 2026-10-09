@@ -55,6 +55,12 @@ Keep these as small as possible so a sync stays mechanical.
 9. The build bundles Prism (with Floway's ESM shim) and OverlayScrollbars
    (with Floway's patch, via `pnpm-workspace.yaml`) into `dist/index.js`, and
    expands UnoCSS at `@unocss;` in `base.css` as Floway's PostCSS step does.
+10. `components/ui/badge-hue.ts` and `components/ui/settings-card.tsx` state
+    their dark-scheme choice in `src/base.css` (`.fwt-badge-hue`,
+    `--fwt-elevation-edge-top`/`-bottom`) instead of a Griffel
+    `@media (prefers-color-scheme: dark)` key, which is injected at runtime and
+    so never yields to `data-fwt-theme`. `tests/scheme-media-queries_test.ts`
+    keeps new Griffel scheme queries out.
 
 ## Rewritten from Floway
 

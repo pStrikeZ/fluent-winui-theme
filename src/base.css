@@ -139,6 +139,39 @@
   }
 }
 
+/* Local adaptation (UPSTREAM.md): the two scheme choices Floway states as
+   Griffel `@media (prefers-color-scheme: dark)` rules live here instead, because
+   Griffel injects them at runtime, past the build step that lets
+   `data-fwt-theme` override the system scheme. The components read the result.
+
+   The badge hue's scheme pick (components/ui/badge-hue.ts). */
+.fwt-badge-hue {
+  --fwt-badge-fill: var(--fwt-badge-fill-light);
+  --fwt-chip-stroke: var(--fwt-badge-stroke-light);
+  --fwt-badge-label: var(--fwt-badge-label-light);
+}
+
+/* The two stops of ControlElevationBorderBrush a settings card's hover border
+   names (components/ui/settings-card.tsx): the light dictionary flips the
+   gradient (ScaleY="-1") and the dark one does not. */
+:root {
+  --fwt-elevation-edge-top: var(--winui-control-stroke-default);
+  --fwt-elevation-edge-bottom: var(--winui-control-stroke-secondary);
+}
+
+@media (prefers-color-scheme: dark) {
+  .fwt-badge-hue {
+    --fwt-badge-fill: var(--fwt-badge-fill-dark);
+    --fwt-chip-stroke: var(--fwt-badge-stroke-dark);
+    --fwt-badge-label: var(--fwt-badge-label-dark);
+  }
+
+  :root {
+    --fwt-elevation-edge-top: var(--winui-control-stroke-secondary);
+    --fwt-elevation-edge-bottom: var(--winui-control-stroke-default);
+  }
+}
+
 /* The monospace ramp. WinUI states none, so nothing here transcribes: monospace
    runs one pixel under whatever the same position would be set at were it not
    monospace. A custom property cannot say "one less than whatever this element

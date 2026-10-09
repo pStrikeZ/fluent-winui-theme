@@ -1,9 +1,6 @@
 import type { CSSProperties } from 'react';
 
-import { fluentComponents } from '../../fluent';
 import { alphaColor, blendHex, readableTone } from '../../lib/color';
-
-const { makeStyles } = fluentComponents;
 
 /** A hue that reads the same in both schemes, or one stated per scheme. */
 export type BadgeHue = string | { light: string; dark: string };
@@ -24,19 +21,9 @@ const BADGE_STROKE_ALPHA = 0.35;
 
 // The three painted properties stay on the element's own style attribute,
 // which is what outranks Fluent's chip styles and the WinUI layer's
-// doubled-class rules; only the scheme choice can live in a class.
-const useStyles = makeStyles({
-  scheme: {
-    '--fwt-badge-fill': 'var(--fwt-badge-fill-light)',
-    '--fwt-chip-stroke': 'var(--fwt-badge-stroke-light)',
-    '--fwt-badge-label': 'var(--fwt-badge-label-light)',
-    '@media (prefers-color-scheme: dark)': {
-      '--fwt-badge-fill': 'var(--fwt-badge-fill-dark)',
-      '--fwt-chip-stroke': 'var(--fwt-badge-stroke-dark)',
-      '--fwt-badge-label': 'var(--fwt-badge-label-dark)',
-    },
-  },
-});
+// doubled-class rules; only the scheme choice can live in a class. That class
+// is base.css's rather than Griffel's, so `data-fwt-theme` reaches it (local
+// adaptation, UPSTREAM.md).
 
 /**
  * A badge painted in an arbitrary hue. The label is resolved against the fill
@@ -50,13 +37,12 @@ const useStyles = makeStyles({
  * is not the one that carries it against black.
  */
 export const useBadgeHue = (hue: BadgeHue): { className: string; style: CSSProperties } => {
-  const styles = useStyles();
   const pair = typeof hue === 'string' ? { light: hue, dark: hue } : hue;
   const fill = { light: alphaColor(pair.light, BADGE_FILL_ALPHA), dark: alphaColor(pair.dark, BADGE_FILL_ALPHA) };
   const label = (own: string, surface: string) => readableTone(own, blendHex(own, BADGE_FILL_ALPHA, surface));
 
   return {
-    className: styles.scheme,
+    className: 'fwt-badge-hue',
     style: {
       '--fwt-badge-fill-light': fill.light,
       '--fwt-badge-fill-dark': fill.dark,
