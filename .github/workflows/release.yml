@@ -28,7 +28,13 @@ jobs:
       # Trusted publishing: npm exchanges the workflow's OIDC token for a
       # one-off publish credential, so the repository holds no npm token.
       - run: npm install -g npm@latest
-      - run: npm publish --provenance --access public
+      - name: Publish unless this version is already on npm
+        run: |
+          if npm view "$(node -p 'require("./package.json").name')@${GITHUB_REF_NAME#v}" version >/dev/null 2>&1; then
+            echo "already published; skipping"
+          else
+            npm publish --provenance --access public
+          fi
       - name: Attach the tarball to a GitHub release
         run: |
           npm pack
