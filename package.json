@@ -1,6 +1,6 @@
 {
   "name": "@pstrikez/fluent-winui-theme",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "WinUI 3 appearance for Fluent UI React v9, extracted from Floway's dashboard.",
   "license": "MIT",
   "author": "pStrikeZ",
