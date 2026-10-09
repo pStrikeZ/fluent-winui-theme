@@ -28,7 +28,7 @@ const ICON_COLUMN = `calc(${ICON_MARGIN_START} + ${ICON_SIZE} + ${ICON_MARGIN_EN
 // reach backwards to ask whether an icon preceded it. The card asks instead and
 // passes the answer down; the variable's absence is the no-icon case.
 const ICON_MARKER = 'data-settings-card-icon';
-const ICON_COLUMN_VAR = 'var(--floway-settings-icon-column, 0px)';
+const ICON_COLUMN_VAR = 'var(--fwt-settings-icon-column, 0px)';
 
 // SettingsCardWrapThreshold 476 and SettingsCardWrapNoIconThreshold 286. The
 // toolkit's ControlSizeTrigger activates on `MinWidth <= ActualWidth <
@@ -37,9 +37,9 @@ const ICON_COLUMN_VAR = 'var(--floway-settings-icon-column, 0px)';
 // https://github.com/CommunityToolkit/Windows/blob/c076d3dd722e43204ffbeb16057090f8498c8166/components/SettingsControls/src/SettingsCard/SettingsCard.xaml#L110-L111
 // https://github.com/CommunityToolkit/Windows/blob/c076d3dd722e43204ffbeb16057090f8498c8166/components/SettingsControls/src/SettingsCard/SettingsCard.xaml#L312-L345
 // https://github.com/CommunityToolkit/Windows/blob/c076d3dd722e43204ffbeb16057090f8498c8166/components/Triggers/src/ControlSizeTrigger.cs#L174-L175
-const WRAPPED = '@container floway-settings-row (width < 476px)';
-const WRAPPED_WITH_ICON = '@container floway-settings-row (286px <= width < 476px)';
-const WRAPPED_NO_ICON = '@container floway-settings-row (width < 286px)';
+const WRAPPED = '@container fwt-settings-row (width < 476px)';
+const WRAPPED_WITH_ICON = '@container fwt-settings-row (286px <= width < 476px)';
+const WRAPPED_NO_ICON = '@container fwt-settings-row (width < 286px)';
 
 const useStyles = makeStyles({
   // Containment sits one level out of the row so the query measures the same
@@ -48,7 +48,7 @@ const useStyles = makeStyles({
   // query never styles its own container.
   // https://drafts.csswg.org/css-contain-3/#size-container
   row: {
-    containerName: 'floway-settings-row',
+    containerName: 'fwt-settings-row',
     containerType: 'inline-size',
   },
   // MinHeight 68, Padding 16, ControlCornerRadius, a 1px card stroke. The
@@ -88,7 +88,7 @@ const useStyles = makeStyles({
     // Wrapped, the control moves into the HEADER's column, so with the icon
     // still shown it is indented to where the header text starts.
     [WRAPPED_WITH_ICON]: {
-      [`&:has(> [${ICON_MARKER}])`]: { '--floway-settings-icon-column': ICON_COLUMN },
+      [`&:has(> [${ICON_MARKER}])`]: { '--fwt-settings-icon-column': ICON_COLUMN },
     },
   },
   // Only a card that does something when clicked takes the pointer ramp. The
@@ -245,7 +245,7 @@ const useStyles = makeStyles({
   // https://github.com/CommunityToolkit/Windows/blob/c076d3dd722e43204ffbeb16057090f8498c8166/components/SettingsControls/src/SettingsCard/SettingsCard.xaml#L313-L345
   // https://github.com/CommunityToolkit/Windows/blob/c076d3dd722e43204ffbeb16057090f8498c8166/components/SettingsControls/src/SettingsCard/SettingsCard.xaml#L453-L458
   action: {
-    '--floway-select-min-width': '200px',
+    '--fwt-select-min-width': '200px',
     // Above the disclosure's stretched target, so the control it holds keeps its
     // own clicks rather than opening the row.
     position: 'relative',

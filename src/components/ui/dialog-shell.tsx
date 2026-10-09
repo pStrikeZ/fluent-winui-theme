@@ -11,7 +11,7 @@ const { Dialog, DialogBody, DialogContent, DialogSurface, mergeClasses } = fluen
 // so a call site asks for a measure by name and cannot state a length.
 const surfaceWidthClasses = {
   standard: '',
-  editor: 'floway-dialog-shell--editor',
+  editor: 'fwt-dialog-shell--editor',
 };
 
 // Fluent can only animate a dialog out while the surface is still mounted, so
@@ -41,19 +41,19 @@ export function DialogShell({ actions, children, onExited, onOpenChange, onSubmi
       surfaceMotion={{ onMotionFinish: (_, data) => { if (data.direction === 'exit') onExited?.(); } }}
     >
       <DialogSurface
-        className={mergeClasses('floway-dialog-shell !m-auto', surfaceWidthClasses[width], surfaceClassName)}
+        className={mergeClasses('fwt-dialog-shell !m-auto', surfaceWidthClasses[width], surfaceClassName)}
       >
         <form
-          className="floway-dialog-shell__form"
+          className="fwt-dialog-shell__form"
           onSubmit={e => {
             e.preventDefault();
             onSubmit?.();
           }}
         >
-          <DialogBody className="floway-dialog-shell__body">
+          <DialogBody className="fwt-dialog-shell__body">
             {title}
-            <DialogContent className="floway-dialog-shell__content">
-              <ScrollArea axes="vertical" className="floway-dialog-shell__scroller h-full min-h-0" contentClassName="grid gap-4" viewportClassName="floway-dialog-shell__scrollport">
+            <DialogContent className="fwt-dialog-shell__content">
+              <ScrollArea axes="vertical" className="fwt-dialog-shell__scroller h-full min-h-0" contentClassName="grid gap-4" viewportClassName="fwt-dialog-shell__scrollport">
                 {children}
               </ScrollArea>
             </DialogContent>

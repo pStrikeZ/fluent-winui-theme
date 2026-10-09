@@ -71,7 +71,7 @@ const rendered = () => items().map(item => item.getAttribute('data-name'));
 const offsets = () => items().map(item => item.style.transform);
 const ranks = () => items().map(item => item.getAttribute('data-rank'));
 const edges = () => items().map(item => item.getAttribute('data-reorder-edge'));
-const travel = () => document.querySelector<HTMLElement>('[data-reorder-list]')!.style.getPropertyValue('--floway-reorder-drag-y');
+const travel = () => document.querySelector<HTMLElement>('[data-reorder-list]')!.style.getPropertyValue('--fwt-reorder-drag-y');
 
 const grip = (name: string) => screen.getByRole('button', { name: `Reorder ${name}` });
 
@@ -90,7 +90,7 @@ describe('drag-to-position reordering', () => {
     press(grip('alpha'), 20);
     // Picked up but not yet moved: the rows hold their own slots.
     expect(offsets()).toEqual([
-      'translateY(var(--floway-reorder-drag-y, 0px))',
+      'translateY(var(--fwt-reorder-drag-y, 0px))',
       'translateY(0px)',
       'translateY(0px)',
       'translateY(0px)',
@@ -100,7 +100,7 @@ describe('drag-to-position reordering', () => {
     // and the three it passed each rise by one row.
     drag(150);
     expect(offsets()).toEqual([
-      'translateY(var(--floway-reorder-drag-y, 0px))',
+      'translateY(var(--fwt-reorder-drag-y, 0px))',
       'translateY(-40px)',
       'translateY(-40px)',
       'translateY(-40px)',

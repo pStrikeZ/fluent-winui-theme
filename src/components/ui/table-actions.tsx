@@ -55,7 +55,7 @@ const ACTION_BUTTON_SIZE = '24px';
 // last in its row, so its trailing padding is the panel's inset rather than the
 // cell's own. A single number keeps the strips of two routes on the same
 // vertical, which a per-route width does not.
-export const TABLE_ACTIONS_WIDTH = `calc(3 * ${ACTION_BUTTON_SIZE} + 2 * ${ACTION_GAP} + var(--spacingHorizontalS) + var(--floway-panel-inset))`;
+export const TABLE_ACTIONS_WIDTH = `calc(3 * ${ACTION_BUTTON_SIZE} + 2 * ${ACTION_GAP} + var(--spacingHorizontalS) + var(--fwt-panel-inset))`;
 
 export function TableActions({ children }: { children: ReactNode }) {
   return <div className="flex items-center justify-end" style={{ gap: ACTION_GAP }} {...stopRowSelection}>{children}</div>;

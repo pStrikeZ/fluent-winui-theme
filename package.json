@@ -4,14 +4,23 @@
   "description": "WinUI 3 appearance for Fluent UI React v9, extracted from Floway's dashboard.",
   "license": "MIT",
   "author": "pStrikeZ",
-  "contributors": ["Menci"],
+  "contributors": [
+    "Menci"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pStrikeZ/fluent-winui-theme.git"
   },
   "type": "module",
-  "sideEffects": ["*.css"],
-  "files": ["dist", "LICENSE", "NOTICE.md", "README.md"],
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE.md",
+    "README.md"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -44,15 +53,19 @@
     "@testing-library/react": "^16.3.0",
     "@types/culori": "^4.0.1",
     "@types/node": "^22.19.19",
+    "@types/prismjs": "^1.26.6",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "esbuild": "0.28.0",
     "happy-dom": "20.11.1",
+    "overlayscrollbars": "2.13.0",
     "postcss": "8.5.23",
+    "prismjs": "^1.30.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "tsx": "^4.22.4",
     "typescript": "5.9.3",
+    "unocss": "66.7.5",
     "vitest": "4.1.10"
   },
   "packageManager": "pnpm@10.24.0"

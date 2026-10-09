@@ -15,12 +15,12 @@ export function ErrorShell({ action, children, message, title }: PropsWithChildr
   title: string;
 }>) {
   return (
-    <ScrollArea axes="vertical" className="floway-error-shell-viewport" contentClassName="h-full">
+    <ScrollArea axes="vertical" className="fwt-error-shell-viewport" contentClassName="h-full">
       {/* Fills the scroller, not the window: the viewport is shorter than the
           window whenever a scrollbar takes width, so a window-measured child
           never lets the bar retract. */}
-      <main className="floway-error-shell">
-        <div className="floway-error-shell-stack">
+      <main className="fwt-error-shell">
+        <div className="fwt-error-shell-stack">
           {/* `align` rather than a rule of our own: Fluent's Text emits a
               text-align atom regardless, and Griffel injects at runtime, so an
               equal-weight rule here always loses the tie. */}
@@ -28,7 +28,7 @@ export function ErrorShell({ action, children, message, title }: PropsWithChildr
           {message !== undefined && <Text align="center" as="p" className="text-fui-fg2" size={300}>{message}</Text>}
         </div>
         {children}
-        {action !== undefined && <div className="floway-error-shell-actions">{action}</div>}
+        {action !== undefined && <div className="fwt-error-shell-actions">{action}</div>}
       </main>
     </ScrollArea>
   );

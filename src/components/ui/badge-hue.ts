@@ -27,13 +27,13 @@ const BADGE_STROKE_ALPHA = 0.35;
 // doubled-class rules; only the scheme choice can live in a class.
 const useStyles = makeStyles({
   scheme: {
-    '--floway-badge-fill': 'var(--floway-badge-fill-light)',
-    '--floway-chip-stroke': 'var(--floway-badge-stroke-light)',
-    '--floway-badge-label': 'var(--floway-badge-label-light)',
+    '--fwt-badge-fill': 'var(--fwt-badge-fill-light)',
+    '--fwt-chip-stroke': 'var(--fwt-badge-stroke-light)',
+    '--fwt-badge-label': 'var(--fwt-badge-label-light)',
     '@media (prefers-color-scheme: dark)': {
-      '--floway-badge-fill': 'var(--floway-badge-fill-dark)',
-      '--floway-chip-stroke': 'var(--floway-badge-stroke-dark)',
-      '--floway-badge-label': 'var(--floway-badge-label-dark)',
+      '--fwt-badge-fill': 'var(--fwt-badge-fill-dark)',
+      '--fwt-chip-stroke': 'var(--fwt-badge-stroke-dark)',
+      '--fwt-badge-label': 'var(--fwt-badge-label-dark)',
     },
   },
 });
@@ -58,15 +58,15 @@ export const useBadgeHue = (hue: BadgeHue): { className: string; style: CSSPrope
   return {
     className: styles.scheme,
     style: {
-      '--floway-badge-fill-light': fill.light,
-      '--floway-badge-fill-dark': fill.dark,
-      '--floway-badge-stroke-light': alphaColor(pair.light, BADGE_STROKE_ALPHA),
-      '--floway-badge-stroke-dark': alphaColor(pair.dark, BADGE_STROKE_ALPHA),
-      '--floway-badge-label-light': label(pair.light, HARDEST_BADGE_SURFACE.light),
-      '--floway-badge-label-dark': label(pair.dark, HARDEST_BADGE_SURFACE.dark),
-      backgroundColor: 'var(--floway-badge-fill)',
-      borderColor: 'var(--floway-chip-stroke)',
-      color: 'var(--floway-badge-label)',
+      '--fwt-badge-fill-light': fill.light,
+      '--fwt-badge-fill-dark': fill.dark,
+      '--fwt-badge-stroke-light': alphaColor(pair.light, BADGE_STROKE_ALPHA),
+      '--fwt-badge-stroke-dark': alphaColor(pair.dark, BADGE_STROKE_ALPHA),
+      '--fwt-badge-label-light': label(pair.light, HARDEST_BADGE_SURFACE.light),
+      '--fwt-badge-label-dark': label(pair.dark, HARDEST_BADGE_SURFACE.dark),
+      backgroundColor: 'var(--fwt-badge-fill)',
+      borderColor: 'var(--fwt-chip-stroke)',
+      color: 'var(--fwt-badge-label)',
     } as CSSProperties,
   };
 };

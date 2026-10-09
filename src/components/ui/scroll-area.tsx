@@ -10,7 +10,7 @@ const { mergeClasses } = fluentComponents;
 OverlayScrollbars.plugin(ClickScrollPlugin);
 
 export type ScrollAxes = 'both' | 'horizontal' | 'vertical';
-const SCROLL_AREA_HOST_CLASS = 'floway-scroll-area relative overflow-hidden';
+const SCROLL_AREA_HOST_CLASS = 'fwt-scroll-area relative overflow-hidden';
 
 interface ScrollAreaProps extends PropsWithChildren {
   axes: ScrollAxes;

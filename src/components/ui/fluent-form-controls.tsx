@@ -1,7 +1,7 @@
-import type { ListboxProps } from '@fluentui/react-components';
+import type { CheckboxProps, ComboboxProps, DropdownProps, ListboxProps, SwitchProps, TextareaProps } from '@fluentui/react-components';
 import { ChevronDown12Regular } from '@fluentui/react-icons';
 import { Children, createElement, forwardRef } from 'react';
-import type { ComponentProps, ElementType, MouseEvent, ReactNode, Ref } from 'react';
+import type { ComponentProps, ElementType, ForwardRefExoticComponent, MouseEvent, ReactNode, Ref, RefAttributes } from 'react';
 
 import { useScrollAreaHost } from './scroll-area';
 import { fluentComponents } from '../../fluent';
@@ -45,7 +45,7 @@ const MIN_WIDTH_CLASS = '!min-w-[0px] [&_input]:!min-w-[0px]';
 // column of selects has to line up. Carried by a variable rather than a second
 // class, so a caller sets a value instead of racing the `!important` this one
 // needs to clear Fluent's.
-const SELECT_MIN_WIDTH_CLASS = '!min-w-[var(--floway-select-min-width,var(--winui-combo-box-min-width))] [&_input]:!min-w-[0px]';
+const SELECT_MIN_WIDTH_CLASS = '!min-w-[var(--fwt-select-min-width,var(--winui-combo-box-min-width))] [&_input]:!min-w-[0px]';
 
 // Fluent flips the popup to whichever side has room for its natural height, so
 // a long list ends up beside the field rather than under it. Restricting the
@@ -101,12 +101,12 @@ function ScrollableListbox({
     {
       ...rootProps,
       ...hostProps,
-      className: mergeClasses(className, hostProps.className, 'floway-combobox-listbox'),
+      className: mergeClasses(className, hostProps.className, 'fwt-combobox-listbox'),
       ref: mergedRef,
     },
     // JSX rather than createElement, so the ref is a ref to the compiler and not
     // an ordinary prop it has to assume is read in render.
-    <div className="floway-combobox-listbox-viewport" ref={viewportRef} style={viewportStyle}>
+    <div className="fwt-combobox-listbox-viewport" ref={viewportRef} style={viewportStyle}>
       {/* Fluent opens the popup whether or not there is anything in it, so an
           empty list would arrive as a bordered seam a few pixels tall. Filling
           it is not an ARIA obligation, despite appearances: 1.3 renamed the
@@ -120,7 +120,7 @@ function ScrollableListbox({
           useOption reads props.disabled, so aria-disabled alone leaves the row
           selectable and eligible to become the active descendant.
           https://w3c.github.io/aria/#mustContain */}
-      <div className="floway-combobox-listbox-content">
+      <div className="fwt-combobox-listbox-content">
         {Children.toArray(children).length === 0
           ? <Option disabled value="">{emptyMessage ?? t(freeform ? 'common.noSuggestions' : 'common.noOptions')}</Option>
           : children}
@@ -173,7 +173,9 @@ export const Input = forwardRef<HTMLInputElement, ComponentProps<typeof FluentIn
 // https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ComboBox/ComboBox_themeresources.xaml#L358-L359
 // https://github.com/microsoft/fluentui/blob/4aa1084999a8c1ac7245724ad6c76210fe80acf6/packages/react-components/react-combobox/library/src/components/Combobox/useCombobox.tsx#L216
 // https://github.com/microsoft/fluentui/blob/4aa1084999a8c1ac7245724ad6c76210fe80acf6/packages/react-components/react-combobox/library/src/components/Dropdown/useDropdown.tsx#L165
-export const Combobox = forwardRef<HTMLInputElement, Omit<ComponentProps<typeof FluentCombobox>, 'appearance' | 'listbox'> & ListWidthProp & EmptyMessageProp & ReadOnlyProp>(
+// Local adaptation (UPSTREAM.md): the export types below name Fluent's public
+// prop types so the emitted declarations reference no internal package.
+export const Combobox: ForwardRefExoticComponent<Omit<ComboboxProps, 'appearance' | 'listbox'> & ListWidthProp & EmptyMessageProp & ReadOnlyProp & RefAttributes<HTMLInputElement>> = forwardRef<HTMLInputElement, Omit<ComponentProps<typeof FluentCombobox>, 'appearance' | 'listbox'> & ListWidthProp & EmptyMessageProp & ReadOnlyProp>(
   ({ className, emptyMessage, expandIcon, listWidth, onOptionSelect, positioning, readOnly, ...props }, ref) => (
     <FluentCombobox
       {...props}
@@ -189,7 +191,7 @@ export const Combobox = forwardRef<HTMLInputElement, Omit<ComponentProps<typeof 
   ),
 );
 
-export const Dropdown = forwardRef<HTMLButtonElement, Omit<ComponentProps<typeof FluentDropdown>, 'appearance' | 'listbox'> & ListWidthProp & EmptyMessageProp & ReadOnlyProp>(
+export const Dropdown: ForwardRefExoticComponent<Omit<DropdownProps, 'appearance' | 'listbox'> & ListWidthProp & EmptyMessageProp & ReadOnlyProp & RefAttributes<HTMLButtonElement>> = forwardRef<HTMLButtonElement, Omit<ComponentProps<typeof FluentDropdown>, 'appearance' | 'listbox'> & ListWidthProp & EmptyMessageProp & ReadOnlyProp>(
   ({ className, emptyMessage, expandIcon, listWidth, onOptionSelect, positioning, readOnly, ...props }, ref) => (
     <FluentDropdown
       {...props}
@@ -218,7 +220,7 @@ export const refuseToggle = (event: MouseEvent<HTMLInputElement>) => event.preve
 // at all.
 // https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/CheckBox_themeresources.xaml#L270-L271
 // https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/CheckBox_themeresources.xaml#L294
-export const Checkbox = forwardRef<HTMLInputElement, Omit<ComponentProps<typeof FluentCheckbox>, 'shape' | 'size'> & ReadOnlyProp>(
+export const Checkbox: ForwardRefExoticComponent<Omit<CheckboxProps, 'shape' | 'size'> & ReadOnlyProp & RefAttributes<HTMLInputElement>> = forwardRef<HTMLInputElement, Omit<ComponentProps<typeof FluentCheckbox>, 'shape' | 'size'> & ReadOnlyProp>(
   ({ input, onChange, readOnly, ...props }, ref) => (
     <FluentCheckbox
       {...props}
@@ -230,7 +232,7 @@ export const Checkbox = forwardRef<HTMLInputElement, Omit<ComponentProps<typeof 
   ),
 );
 
-export const Switch = forwardRef<HTMLInputElement, ComponentProps<typeof FluentSwitch> & ReadOnlyProp>(
+export const Switch: ForwardRefExoticComponent<SwitchProps & ReadOnlyProp & RefAttributes<HTMLInputElement>> = forwardRef<HTMLInputElement, ComponentProps<typeof FluentSwitch> & ReadOnlyProp>(
   ({ input, onChange, readOnly, ...props }, ref) => (
     <FluentSwitch
       {...props}
@@ -249,7 +251,7 @@ export const Switch = forwardRef<HTMLInputElement, ComponentProps<typeof FluentS
 // with rows.
 // https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/TextBox_themeresources.xaml#L336-L337
 // https://github.com/microsoft/fluentui/blob/4aa1084999a8c1ac7245724ad6c76210fe80acf6/packages/react-components/react-textarea/library/src/components/Textarea/useTextareaStyles.styles.ts#L204-L217
-export const Textarea = forwardRef<HTMLTextAreaElement, Omit<ComponentProps<typeof FluentTextarea>, 'resize'>>(
+export const Textarea: ForwardRefExoticComponent<Omit<TextareaProps, 'resize'> & RefAttributes<HTMLTextAreaElement>> = forwardRef<HTMLTextAreaElement, Omit<ComponentProps<typeof FluentTextarea>, 'resize'>>(
   ({ className, ...props }, ref) => (
     <FluentTextarea {...props} className={mergeClasses(className, MIN_WIDTH_CLASS)} ref={ref} />
   ),

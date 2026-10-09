@@ -10,7 +10,7 @@ describe('the critical loading screen styles', () => {
     const style = document.createElement('style');
 
     provider.style.setProperty('--colorBrandStroke2Contrast', 'hotpink');
-    loadingScreen.className = 'floway-loading';
+    loadingScreen.className = 'fwt-loading';
     spinner.className = 'fui-Spinner__spinner';
     style.textContent = loadingCss;
     try {

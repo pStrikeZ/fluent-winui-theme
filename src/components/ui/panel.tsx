@@ -9,13 +9,13 @@ const { Card, mergeClasses } = fluentComponents;
 // panel would otherwise have applied. Written out again below rather than
 // composed, because UnoCSS extracts class names from the source text and never
 // sees a name assembled at runtime.
-export const PANEL_INSET_CLASS = 'p-[var(--floway-panel-inset)]';
+export const PANEL_INSET_CLASS = 'p-[var(--fwt-panel-inset)]';
 
 // Fixed bands keep the panel edge inset and Fluent's compact six-pixel spacing.
-export const PANEL_BAND_CLASS = 'px-[var(--floway-panel-inset)] py-[var(--spacingVerticalSNudge)]';
+export const PANEL_BAND_CLASS = 'px-[var(--fwt-panel-inset)] py-[var(--spacingVerticalSNudge)]';
 
 const PADDING_CLASS = {
-  content: '!p-[var(--floway-panel-inset)]',
+  content: '!p-[var(--fwt-panel-inset)]',
   flush: '!p-0',
 } as const;
 

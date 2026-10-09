@@ -43,7 +43,7 @@ const HANDLE_ATTRIBUTE = 'data-reorder-handle';
 // The travel of the item under the pointer, written to the list rather than
 // held in state: it changes at pointer rate, and a render per move would put
 // the whole list through React to move one row. The row reads it by inheritance.
-const DRAG_Y = '--floway-reorder-drag-y';
+const DRAG_Y = '--fwt-reorder-drag-y';
 
 // Constant, so React has nothing to rewrite on the row that is moving.
 const TRACKING_TRANSFORM: CSSProperties = { transform: `translateY(var(${DRAG_Y}, 0px))` };

@@ -14,8 +14,17 @@ The source is extracted from [Menci/Floway](https://github.com/Menci/Floway).
 | `src/critical.css.ts` (document rules only) | `src/document.css.ts` |
 | `src/lib/legacy-css-color.ts`, `color.ts`, `reduced-motion.ts` | `src/lib/` |
 | `src/components/sidebar/nav-selection-indicator.tsx` | `src/components/` |
+| `src/components/ui/` (generic components; see below) | `src/components/ui/` |
+| `src/lib/use-media-query.ts` | `src/lib/` |
+| `uno.config.ts` | `uno.config.ts` |
+| `patches/overlayscrollbars@2.13.0.patch` (repository root) | `patches/` |
 | `src/assets/fonts/` | `src/fonts/` |
-| `__tests__/winui/`, `__tests__/{render.tsx,setup.ts,match-media-stub.ts}` | `tests/` |
+| `__tests__/winui/`, `__tests__/{render.tsx,setup.ts,settle.ts,match-media-stub.ts}` | `tests/` |
+| `__tests__/components/ui/` (suites of the components taken) | `tests/components/ui/` |
+
+From `src/components/ui/`, these are **not** taken: `body-editor.tsx` and
+`monaco-workers.ts` (Monaco), `markdown.tsx` (react-markdown), `route-menu-item.tsx`,
+`use-refresh.ts` and `use-poll-while-visible.ts` (data hooks).
 
 ## Local adaptations
 
@@ -33,6 +42,18 @@ Keep these as small as possible so a sync stays mechanical.
 4. Comments that pointed at Floway files which do not exist here were
    reworded; comments that describe Floway's dashboard as context were kept.
 5. `tests/setup.ts` drops the dashboard's i18n import.
+6. `src/i18n/translation.tsx` stands in for Floway's i18n module at the same
+   relative path: the same `useTranslation` shape over only the keys the
+   components use, with Floway's `en` and `zh-Hans` text. When a synced
+   component reads a new key, add it there.
+7. `src/components/ui/route-link.tsx` replaces Floway's react-router binding
+   with `WinuiRouterProvider`; `useRouteAddress` keeps its signature.
+8. `src/components/ui/fluent-form-controls.tsx` annotates its five
+   `forwardRef` exports with Fluent's public prop types so the declarations
+   stay portable (TS2742). Runtime is unchanged.
+9. The build bundles Prism (with Floway's ESM shim) and OverlayScrollbars
+   (with Floway's patch, via `pnpm-workspace.yaml`) into `dist/index.js`, and
+   expands UnoCSS at `@unocss;` in `base.css` as Floway's PostCSS step does.
 
 ## Syncing
 

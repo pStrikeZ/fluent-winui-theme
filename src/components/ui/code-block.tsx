@@ -54,7 +54,7 @@ const useStyles = makeStyles({
   lang: {
     color: 'var(--winui-text-fill-secondary)',
     fontFamily: 'var(--fontFamilyMonospace)',
-    fontSize: 'var(--floway-font-size-mono)',
+    fontSize: 'var(--fwt-font-size-mono)',
   },
   // Under an auto min-width the scrollable region ends where the text does, so
   // the trailing padding is never reachable and the last character sits against

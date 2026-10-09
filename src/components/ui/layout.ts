@@ -25,13 +25,13 @@ export const SECTION_STACK_CLASS = 'grid gap-2';
 // `!` because Griffel's `Card` sheet is injected after the utility sheet.
 export const PANEL_STACK_CLASS = '!grid !gap-3';
 
-// 680 because that is where `--floway-page-inset` and `--floway-panel-inset`
+// 680 because that is where `--fwt-page-inset` and `--fwt-panel-inset`
 // already step down, so columns collapse as the space around them narrows.
 export const TWO_COLUMN_FORM_CLASS = 'grid grid-cols-2 max-[680px]:grid-cols-1';
 
 // Reads the page inset rather than stating a number, so the 680px step-down
 // comes with the token and a shell needs no breakpoint of its own.
-export const PANE_GAP_CLASS = 'gap-[var(--floway-page-inset)]';
+export const PANE_GAP_CLASS = 'gap-[var(--fwt-page-inset)]';
 
 // A box that fills its scrollport and carries the inset of what it holds.
 // `height: 100%` alone is enough only while the content fits: anything with a

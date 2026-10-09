@@ -14,7 +14,7 @@
 // https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ProgressRing/ProgressRing.xaml#L31-L32
 // https://github.com/microsoft/fluentui/blob/4aa1084999a8c1ac7245724ad6c76210fe80acf6/packages/react-components/react-spinner/library/src/components/Spinner/useSpinnerStyles.styles.ts
 export const loadingCss = `
-  .floway-loading {
+  .fwt-loading {
     box-sizing: border-box;
     display: grid;
     height: 100%;
@@ -23,10 +23,10 @@ export const loadingCss = `
   }
   /* Only the boot screen owns the viewport; a content region is sized by the
      layout it waits inside. */
-  .floway-loading-app {
+  .fwt-loading-app {
     min-height: 100dvh;
   }
-  .floway-loading .fui-Spinner {
+  .fwt-loading .fui-Spinner {
     align-items: center;
     display: flex;
     gap: 8px;
@@ -44,9 +44,9 @@ export const loadingCss = `
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ProgressRing/ProgressRing.xaml#L12-L13
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/Common_themeresources_any.xaml#L219-L225
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/Common_themeresources_any.xaml#L125-L127 */
-  .floway-loading .fui-Spinner__spinner {
+  .fwt-loading .fui-Spinner__spinner {
     --fui-Spinner--strokeWidth: 25%;
-    animation: floway-loading-spin 1.5s linear infinite;
+    animation: fwt-loading-spin 1.5s linear infinite;
     background-color: rgba(255, 255, 255, 0);
     color: var(--colorBrandStroke1, #0067c0);
     flex-shrink: 0;
@@ -56,8 +56,8 @@ export const loadingCss = `
     width: 32px;
     -webkit-mask-image: radial-gradient(closest-side, transparent calc(100% - var(--fui-Spinner--strokeWidth) - 1px), white calc(100% - var(--fui-Spinner--strokeWidth)) calc(100% - 1px), transparent 100%);
   }
-  .floway-loading .fui-Spinner__spinnerTail {
-    animation: floway-loading-tail 1.5s cubic-bezier(0.33, 0, 0.67, 1) infinite;
+  .fwt-loading .fui-Spinner__spinnerTail {
+    animation: fwt-loading-tail 1.5s cubic-bezier(0.33, 0, 0.67, 1) infinite;
     display: block;
     height: 100%;
     mask-image: conic-gradient(transparent 105deg, white 105deg);
@@ -65,8 +65,8 @@ export const loadingCss = `
     width: 100%;
     -webkit-mask-image: conic-gradient(transparent 105deg, white 105deg);
   }
-  .floway-loading .fui-Spinner__spinnerTail::before,
-  .floway-loading .fui-Spinner__spinnerTail::after {
+  .fwt-loading .fui-Spinner__spinnerTail::before,
+  .fwt-loading .fui-Spinner__spinnerTail::after {
     animation-duration: 1.5s;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(0.33, 0, 0.67, 1);
@@ -77,18 +77,18 @@ export const loadingCss = `
     position: absolute;
     width: 100%;
   }
-  .floway-loading .fui-Spinner__spinnerTail::before {
-    animation-name: floway-loading-tail-before;
+  .fwt-loading .fui-Spinner__spinnerTail::before {
+    animation-name: fwt-loading-tail-before;
   }
-  .floway-loading .fui-Spinner__spinnerTail::after {
-    animation-name: floway-loading-tail-after;
+  .fwt-loading .fui-Spinner__spinnerTail::after {
+    animation-name: fwt-loading-tail-after;
   }
   /* WinUI's ProgressRing has no label slot, so the label takes
      BodyTextBlockStyle rather than the subtitle2 Fluent gives a medium Spinner,
      which would read as a heading of the screen or region it is waiting in.
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/TextBlock_themeresources.xaml#L4
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/TextBlock_themeresources.xaml#L23-L25 */
-  .floway-loading .fui-Spinner__label {
+  .fwt-loading .fui-Spinner__label {
     color: var(--colorNeutralForeground1, rgba(0, 0, 0, 0.894118));
     font-family: var(--fontFamilyBase, sans-serif);
     font-size: var(--fontSizeBase300, 14px);
@@ -99,34 +99,34 @@ export const loadingCss = `
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/Common_themeresources_any.xaml#L329-L331
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/CommonStyles/Common_themeresources_any.xaml#L5-L9 */
   @media (prefers-color-scheme: dark) {
-    .floway-loading .fui-Spinner__spinner {
+    .fwt-loading .fui-Spinner__spinner {
       color: var(--colorBrandStroke1, #4cc2ff);
     }
-    .floway-loading .fui-Spinner__label {
+    .fwt-loading .fui-Spinner__label {
       color: var(--colorNeutralForeground1, #ffffff);
     }
   }
-  @keyframes floway-loading-spin {
+  @keyframes fwt-loading-spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
-  @keyframes floway-loading-tail {
+  @keyframes fwt-loading-tail {
     0% { transform: rotate(-135deg); }
     50% { transform: rotate(0deg); }
     100% { transform: rotate(225deg); }
   }
-  @keyframes floway-loading-tail-before {
+  @keyframes fwt-loading-tail-before {
     0%, 100% { transform: rotate(0deg); }
     50% { transform: rotate(105deg); }
   }
-  @keyframes floway-loading-tail-after {
+  @keyframes fwt-loading-tail-after {
     0%, 100% { transform: rotate(0deg); }
     50% { transform: rotate(225deg); }
   }
   /* Highlight is the accent WinUI's HighContrast dictionary names for the arc.
      https://github.com/microsoft/microsoft-ui-xaml/blob/188f602b27cdb47572b28c380e9c087b02e1ccee/controls/dev/ProgressRing/ProgressRing_themeresources.xaml#L12-L15 */
   @media screen and (forced-colors: active) {
-    .floway-loading .fui-Spinner__spinner {
+    .fwt-loading .fui-Spinner__spinner {
       background-color: HighlightText;
       color: Highlight;
       forced-color-adjust: none;

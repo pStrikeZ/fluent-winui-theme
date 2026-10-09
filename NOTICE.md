@@ -19,6 +19,16 @@ to its source beside it. No Microsoft source file is redistributed.
 "WinUI" and "Fluent" are trademarks of Microsoft Corporation. This package is not
 affiliated with or endorsed by Microsoft.
 
+## Bundled libraries
+
+`dist/index.js` bundles:
+
+- [Prism](https://github.com/PrismJS/prism) (MIT License, Copyright (c) 2012 Lea Verou),
+  for syntax highlighting in `CodeBlock`;
+- [OverlayScrollbars](https://github.com/KingSora/OverlayScrollbars) 2.13.0
+  (MIT License, Copyright (c) Rene Haas | KingSora), **modified** by Floway's patch in
+  `patches/overlayscrollbars@2.13.0.patch`, for `ScrollArea`.
+
 ## Meslo LG
 
 `dist/fonts/meslo-lg-s-*.woff2` are **modified** versions of the Meslo LG S

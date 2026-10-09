@@ -14,8 +14,8 @@ const { Button, Spinner, Tooltip, makeStyles, mergeClasses } = fluentComponents;
 // height is already the minimum there.
 // https://drafts.csswg.org/css-tables-3/#row-layout
 const DEFAULT_ROW_HEIGHT = '44px';
-const ROW_HEIGHT = '--floway-resource-row-height';
-const EDGE_INSET = 'var(--floway-panel-inset)';
+const ROW_HEIGHT = '--fwt-resource-row-height';
+const EDGE_INSET = 'var(--fwt-panel-inset)';
 
 const useStyles = makeStyles({
   table: {
